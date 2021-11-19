@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: member-db
+    ports:
+      - "3307:3306" # 외부 3307, 내부 3306
+
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --max_connections=1024
+    environment:
+      TZ: Asia/Seoul
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: hellospring
+      MYSQL_PASSWORD: spring
+      MYSQL_DATABASE: hellospring
