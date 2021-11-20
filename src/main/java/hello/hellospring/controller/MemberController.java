@@ -18,7 +18,7 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
-        System.out.println("class" + memberService.getClass());
+        // System.out.println("class" + memberService.getClass());
     }
 
     // 회원 등록 폼 GET

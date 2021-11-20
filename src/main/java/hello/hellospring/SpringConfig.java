@@ -11,51 +11,48 @@ public class SpringConfig {
 
     // spring 데이터 jpa: 알아서 repository 구현체 만듦
     private final MemberRepository memberRepository;
+
     @Autowired
     public SpringConfig(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
-    // JPA
+    // JPA repository 구현체
     /*
-    @PersistenceContext
-    private EntityManager em;
-    public SpringConfig(EntityManager em) {
-        this.em = em;
-    }
-    */
+     * @PersistenceContext private EntityManager em; public
+     * SpringConfig(EntityManager em) { this.em = em; }
+     */
 
-    // jdbc
+    // jdbc repository 구현체 의존성 설정
     /*
-    // @Autowired DataSource dataSource;
-    private DataSource dataSource;
-    @Autowired
-    public SpringConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-    */
+     * // @Autowired DataSource dataSource; private DataSource dataSource;
+     * 
+     * @Autowired public SpringConfig(DataSource dataSource) { this.dataSource =
+     * dataSource; }
+     */
 
     @Bean
     public MemberService memberService() {
         return new MemberService(memberRepository);
     }
 
-//    @Bean
-//    public TimeTraceAop timeTraceAop() {
-//        return new TimeTraceAop();
-//    }
+    // @Bean
+    // public TimeTraceAop timeTraceAop() {
+    // return new TimeTraceAop();
+    // }
 
     // spring data jpa에서는 리포지토리 구현을 알아서 해주니까, 아래 코드 모두 필요 없음
-    //   public MemberService memberService() {
-    //        return new MemberService(memberRepository()); // MemberService 생성자에 MemberRepository 필요
-    //    }
+    // public MemberService memberService() {
+    // return new MemberService(memberRepository()); // MemberService 생성자에
+    // MemberRepository 필요
+    // }
 
-    //    @Bean
-    //    public MemberRepository memberRepository() {
-    //        // return new MemoryMemberRepository();
-    //        // return new JdbcMemberRepository(dataSource); // data source 필요
-    //        // return new JdbcTemplateMemberRepository(dataSource);
-    //        // return new JpaMemberRepository(em);
-    //    }
+    // @Bean
+    // public MemberRepository memberRepository() {
+    // // return new MemoryMemberRepository();
+    // // return new JdbcMemberRepository(dataSource); // data source 필요
+    // // return new JdbcTemplateMemberRepository(dataSource);
+    // // return new JpaMemberRepository(em);
+    // }
 
 }
