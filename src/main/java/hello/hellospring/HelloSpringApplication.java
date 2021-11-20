@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
-@EnableConfigurationProperties // TODO
-@EnableAspectJAutoProxy // TODO
+@EnableConfigurationProperties
+@EnableAspectJAutoProxy
 public class HelloSpringApplication {
 
 	public static void main(String[] args) {

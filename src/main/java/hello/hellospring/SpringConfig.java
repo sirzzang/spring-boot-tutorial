@@ -9,7 +9,38 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
 
+    /* ---- Repository ---- */
+    /* MemoryMemberRepository 구현체 */
+    // @Bean
+    // public MemberRepository memberRepository() {
+    // return new MemoryMemberRepository();
+    // }
+
+    /* JdbcMemberRepository 구현체: DataSource 필요 */
+    // private DataSource dataSource;
+    // @Autowired
+    // public SpringConfig(Datasource datasource) {
+    // this.datasource = dataSource;
+    // }
+    // @Bean
+    // public MemberRepository memberRepository() {
+    // // return new JdbcMemberRepository();
+    // }
+
+    /* JpaMemberRepository 구현체: EntityManger 필요 */
+    // @PersistentContext
+    // private Entitymaneger em;
+    // public SpringConfig(EntityManger em) {
+    // this.em = em;
+    // }
+    // @Bean
+    // public MemberRepository memberRepository() {
+    // // return new JpaMemberRepository();
+    // }
+
     // spring 데이터 jpa: 알아서 repository 구현체 만듦
+
+    /* SpringDataMemberRepository 구현체: Spring Data JPA에서 알아서 repository 구현체 생성 */
     private final MemberRepository memberRepository;
 
     @Autowired
@@ -17,42 +48,16 @@ public class SpringConfig {
         this.memberRepository = memberRepository;
     }
 
-    // JPA repository 구현체
-    /*
-     * @PersistenceContext private EntityManager em; public
-     * SpringConfig(EntityManager em) { this.em = em; }
-     */
-
-    // jdbc repository 구현체 의존성 설정
-    /*
-     * // @Autowired DataSource dataSource; private DataSource dataSource;
-     * 
-     * @Autowired public SpringConfig(DataSource dataSource) { this.dataSource =
-     * dataSource; }
-     */
-
+    /* ---- Service ---- */
     @Bean
     public MemberService memberService() {
         return new MemberService(memberRepository);
     }
 
+    /* ---- AOP 설정 Spring Config에서도 가능 ---- */
     // @Bean
     // public TimeTraceAop timeTraceAop() {
     // return new TimeTraceAop();
-    // }
-
-    // spring data jpa에서는 리포지토리 구현을 알아서 해주니까, 아래 코드 모두 필요 없음
-    // public MemberService memberService() {
-    // return new MemberService(memberRepository()); // MemberService 생성자에
-    // MemberRepository 필요
-    // }
-
-    // @Bean
-    // public MemberRepository memberRepository() {
-    // // return new MemoryMemberRepository();
-    // // return new JdbcMemberRepository(dataSource); // data source 필요
-    // // return new JdbcTemplateMemberRepository(dataSource);
-    // // return new JpaMemberRepository(em);
     // }
 
 }

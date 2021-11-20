@@ -6,50 +6,29 @@ import hello.hellospring.repository.MemberRepository;
 import java.util.List;
 import java.util.Optional;
 
+// SpringConfig를 통해 의존성을 주입하므로, 여기서는 어노테이션 주석 처리
 // @Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-// @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
-
-
-//    /* private final
-//     private final로 선언한다면 직접 적으로 값을 참조할 수는 없지만 생성자를 통해 값을 참조할 수 있다
-//     하지만 private static final의 경우에는 생성자를 통해 값을 참조할 수 없다.
-//     이때 private static final 변수는 무조건 초기화돼있어야 한다.
-//     출처: https://jwdeveloper.tistory.com/179
-//     */
-//    // private final MemberRepository memberRepository = new MemoryMemberRepository();
-//    private final MemberRepository memberRepository;
-//
-//    // 생성자, DI
-//    public MemberService(MemberRepository memberRepository) {
-//        this.memberRepository = memberRepository;
-//    }
 
     /**
      * 회원가입
      */
     public Long join(Member member) {
 
-        /* AOP 일일이 로직을 짜면
-
-        long start = System.currentTimeMillis();
-        try {
-            validateDuplicateMember(member);
-            memberRepository.save(member);
-            return member.getId();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("join = " + timeMs + "ms");
-        }
+        /*
+         * AOP 없이 일일이 시간 측정 로직을 짰을 때의 안 좋은 예
+         * 
+         * long start = System.currentTimeMillis(); try {
+         * validateDuplicateMember(member); memberRepository.save(member); return
+         * member.getId(); } finally { long finish = System.currentTimeMillis(); long
+         * timeMs = finish - start; System.out.println("join = " + timeMs + "ms"); }
          */
-
 
         // 중복 회원 검증
         validateDuplicateMember(member);
@@ -61,10 +40,9 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member) {
-        memberRepository.findByName(member.getName())
-                        .ifPresent(m -> {
-                            throw new IllegalStateException("이미 존재하는 회원입니다.");
-                        });
+        memberRepository.findByName(member.getName()).ifPresent(m -> {
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        });
     }
 
     /**

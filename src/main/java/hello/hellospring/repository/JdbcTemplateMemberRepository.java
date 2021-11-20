@@ -59,17 +59,13 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
             member.setName(rs.getString("name"));
             return member;
         };
-
+        // 화살표 함수 사용하지 않을 때
         /*
-        return new RowMapper<Member>() {
-            @Override
-            public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Member member = new Member();
-                member.setId(rs.getLong("id"));
-                member.setName(rs.getString("name"));
-                return member;
-            }
-        }
+         * return new RowMapper<Member>() {
+         * 
+         * @Override public Member mapRow(ResultSet rs, int rowNum) throws SQLException
+         * { Member member = new Member(); member.setId(rs.getLong("id"));
+         * member.setName(rs.getString("name")); return member; } }
          */
 
     }

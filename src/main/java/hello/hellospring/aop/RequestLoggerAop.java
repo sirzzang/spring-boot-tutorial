@@ -16,7 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 @Aspect
-@Component // TODO
+@Component
 public class RequestLoggerAop {
 
     private static final Logger logger = LoggerFactory.getLogger(RequestLoggerAop.class);

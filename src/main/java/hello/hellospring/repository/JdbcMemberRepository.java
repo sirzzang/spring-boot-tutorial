@@ -1,4 +1,5 @@
 package hello.hellospring.repository;
+
 import hello.hellospring.domain.Member;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import javax.sql.DataSource;
@@ -6,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 public class JdbcMemberRepository implements MemberRepository {
 
     private final DataSource dataSource;
@@ -58,7 +60,7 @@ public class JdbcMemberRepository implements MemberRepository {
             pstmt.setLong(1, id);
 
             rs = pstmt.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
@@ -89,7 +91,7 @@ public class JdbcMemberRepository implements MemberRepository {
 
             rs = pstmt.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
@@ -118,7 +120,7 @@ public class JdbcMemberRepository implements MemberRepository {
             rs = pstmt.executeQuery();
 
             List<Member> members = new ArrayList<>();
-            while(rs.next()) {
+            while (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
