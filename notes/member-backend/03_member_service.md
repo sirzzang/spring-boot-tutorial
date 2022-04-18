@@ -82,7 +82,7 @@ public class MemberService {
   * `assertThrows`를 이용한 검증: 발생하기 기대하는 예외
     * `assertThrows`는 에러를 반환할 수 있음
 
-* [리포지토리 테스트](`02_member_repository.md##테스트`)에서와 마찬가지로, 동일한 회원을 저장하면 테스트 시 에러가 발생할 수 있으므로, `clear`한다.
+* [리포지토리 테스트](`02_member_repository.md`)에서와 마찬가지로, 동일한 회원을 저장하면 테스트 시 에러가 발생할 수 있으므로, `clear`한다.
 
 ```java
 class MemberServiceTest {
