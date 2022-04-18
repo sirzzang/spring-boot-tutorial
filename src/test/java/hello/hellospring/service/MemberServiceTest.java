@@ -11,14 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MemberServiceTest {
 
-    /*
-     MemberService memberService = new MemberService();
-     MemoryMemberRepository memoryMemberRepository = new MemoryMemberRepository();
-     */
-
-    // 테스트 실행할 때마다 리포지토리 만들고, 그것을 서비스에 주입
     MemberService memberService;
     MemoryMemberRepository memberRepository;
+
+    // 테스트 실행할 때마다 리포지토리 만들고, 그것을 서비스에 주입
     @BeforeEach
     public void beforeEach() {
         memberRepository = new MemoryMemberRepository();
@@ -33,14 +29,14 @@ class MemberServiceTest {
 
     @Test
     void join() {
-        // given: 이 데이터를 기반으로
+        // given
         Member member = new Member();
         member.setName("hello");
 
-        // when: 이걸 검증한다
-        Long saveId = memberService.join(member); // join 메소드 리턴 값 저장 id
+        // when
+        Long saveId = memberService.join(member);
 
-       // then: 검증부
+        // then
         Member findMember = memberService.findOne(saveId).get();
         assertThat(member.getName()).isEqualTo(findMember.getName());
     }
@@ -58,18 +54,6 @@ class MemberServiceTest {
         memberService.join(member1);
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
-
-        /*
-        try {
-            memberService.join(member2);
-            fail(); // 실패
-        } catch(IllegalStateException e) {
-            // 예외 잡아내면 정상적으로 테스트가 성공한 것
-            assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
-        }
-        */
-
-        // then
     }
 
     @Test
