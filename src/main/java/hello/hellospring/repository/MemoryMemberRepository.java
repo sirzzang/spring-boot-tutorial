@@ -7,19 +7,19 @@ import java.util.*;
 //@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
-    private static Map<Long, Member> store = new HashMap<>(); // 회원을 저장할 repository
-    private static long sequence = 0L; // key 생성
+    private static Map<Long, Member> store = new HashMap<>(); // 저장소
+    private static long sequence = 0L; // 식별자
 
     @Override
     public Member save(Member member) {
-        member.setId(++sequence); // sequence 값을 증가시켜 id로 세팅한 뒤,
-        store.put(member.getId(), member); // 회원 저장
+        member.setId(++sequence);
+        store.put(member.getId(), member);
         return member;
     }
 
     @Override
     public Optional<Member> findById(Long id) {
-        return Optional.ofNullable(store.get(id)); // null일 가능성이 있으므로
+        return Optional.ofNullable(store.get(id));
     }
 
     @Override
@@ -31,7 +31,6 @@ public class MemoryMemberRepository implements MemberRepository {
 
     @Override
     public List<Member> findAll() {
-        // store의 모든 values(Member) 반환
         return new ArrayList<>(store.values());
     }
 
