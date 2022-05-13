@@ -26,7 +26,7 @@ spring.datasource.username=sa
 
  `MemberRepository`를 구현하는 `JdbcMemberRepository`를 만든다.
 
-* `DataSoruce`: DB에 접속하기 위한 데이터 소스. 스프링 컨테이너로부터 의존성 주입
+* `DataSoruce`: DB에 접속하기 위한 데이터 소스. **스프링 컨테이너로부터 의존성 주입**
   * `getConnection()`
     * 데이터 소스 연결
     * `dataSource.getConnection()`를 쓰면 계속해서 커넥션 늘어남

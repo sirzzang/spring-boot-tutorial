@@ -59,7 +59,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
             member.setName(rs.getString("name"));
             return member;
         };
-        // 화살표 함수 사용하지 않을 때
+        // 람다 사용하지 않을 때
         /*
          * return new RowMapper<Member>() {
          * 
